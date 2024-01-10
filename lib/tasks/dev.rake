@@ -1,11 +1,11 @@
 namespace :dev do
   desc "Configura o ambiente de desenvolvimento"
   task setup: :environment do
-          show_spinner("apagando banco de dados...") {%x(rails db:drop)}
-          show_spinner("criando banco de dados...") {%x(rails db:create)}
-          show_spinner("migrando banco de dados...") {%x(rails db:migrate)}
-          show_spinner("Cadastrando contatos e tipos...") {%x(rails dev:add_contacts)}
-    end
+        show_spinner("apagando banco de dados...") {%x(rails db:drop)}
+        show_spinner("criando banco de dados...") {%x(rails db:create)}
+        show_spinner("migrando banco de dados...") {%x(rails db:migrate)}
+        show_spinner("Cadastrando tipos de moedas...") {%x(rails dev:add_contacts)}
+      end
 
   desc "Configura o ambiente de desenvolvimento"
   task add_contacts: :environment do
@@ -22,7 +22,7 @@ namespace :dev do
     puts "Cadastrando tipos de contatos..."
     kinds = %w(Amigo Comercial Conhecido)
     kinds.each do |kind|
-      kind.create!(
+      Kind.create!(
         description: kind
       )
     end
