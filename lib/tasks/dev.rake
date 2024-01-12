@@ -1,14 +1,16 @@
 namespace :dev do
   desc "Configura o ambiente de desenvolvimento"
   task setup: :environment do
-        show_spinner("apagando banco de dados...") {%x(rails db:drop)}
-        show_spinner("criando banco de dados...") {%x(rails db:create)}
-        show_spinner("migrando banco de dados...") {%x(rails db:migrate)}
-        show_spinner("Cadastrando tipos de moedas...") {%x(rails dev:add_contacts)}
+        show_spinner("Apagando banco de dados... ") {%x(rails db:drop)}
+        show_spinner("Criando banco de dados... ") {%x(rails db:create)}
+        show_spinner("Migrando banco de dados... ") {%x(rails db:migrate)}
+        show_spinner("Cadastrando tipos de contatos...") {%x(rails dev:add_types_contacts)}
+        show_spinner("Cadastrando contatos... ") {%x(rails dev:add_contacts)}
+        show_spinner("Cadastrando numeros... ") {%x(rails dev:add_phonenumber_contacts)}
       end
 
-  desc "Configura o ambiente de desenvolvimento"
-  task add_contacts: :environment do
+  desc "Cadastra tipos contatos "
+  task add_types_contacts: :environment do
     puts "Cadastrando tipos de contatos..."
     kinds = %w(Amigo Comercial Conhecido)
     kinds.each do |kind|
@@ -17,8 +19,10 @@ namespace :dev do
       )
     end
     puts "Tipos cadastrados"
-  
+  end
 
+    desc "Cadastra contatos "
+    task add_contacts: :environment do
     puts "Cadastrando contatos..."
     100.times do |i|
       Contact.create!(
@@ -27,9 +31,22 @@ namespace :dev do
         birthdate: Faker::Date.between(from: 65.years.ago, to: 18.years.ago),
         kind: Kind.all.sample
       )
+      end
+      puts "Contatos cadastrados"
     end
-    puts "Contatos cadastrados"
+
+    desc "Cadastra numeros"
+    task add_phonenumber_contacts: :environment do
+    puts "Cadastrando os telefones..."
+    Contact.all.each do |contact|
+      Random.rand(5).times do |i|
+        phone = contact.phones.build(number: Faker::PhoneNumber.cell_phone)
+        phone.save!
+      end
+    end
+    puts "telefones cadastrados"
   end
+
   private
 
   def show_spinner(msg_start,msg_finish ="(Concluido!)")
