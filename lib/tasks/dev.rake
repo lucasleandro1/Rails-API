@@ -7,6 +7,7 @@ namespace :dev do
         show_spinner("Cadastrando tipos de contatos...") {%x(rails dev:add_types_contacts)}
         show_spinner("Cadastrando contatos... ") {%x(rails dev:add_contacts)}
         show_spinner("Cadastrando numeros... ") {%x(rails dev:add_phonenumber_contacts)}
+        show_spinner("Cadastrando endereços... ") {%x(rails dev:add_address_contacts)}
       end
 
   desc "Cadastra tipos contatos "
@@ -38,14 +39,27 @@ namespace :dev do
     desc "Cadastra numeros"
     task add_phonenumber_contacts: :environment do
     puts "Cadastrando os telefones..."
-    Contact.all.each do |contact|
-      Random.rand(5).times do |i|
-        phone = contact.phones.build(number: Faker::PhoneNumber.cell_phone)
-        phone.save!
+      Contact.all.each do |contact|
+        Random.rand(5).times do |i|
+          phone = contact.phones.build(number: Faker::PhoneNumber.cell_phone)
+          phone.save!
+        end
       end
+      puts "telefones cadastrados"
     end
-    puts "telefones cadastrados"
-  end
+
+    desc "Cadastra endereços"
+    task add_address_contacts: :environment do
+    puts "Cadastrando os endereços..."
+      Contact.all.each do |contact|
+        address = Address.create(
+          street: Faker::Address.street_address,
+          city: Faker::Address.city,
+          contact: contact
+        )
+      end
+      puts "Endereços cadastrados"
+    end
 
   private
 
