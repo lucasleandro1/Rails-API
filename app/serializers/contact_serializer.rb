@@ -7,7 +7,7 @@ class ContactSerializer < ActiveModel::Serializer
   has_many :phones
   has_one :address
 
-  link(:self) {contact_url(object.id)}
+  # link(:self) {contact_url(object.id)}
   
 
   meta do {
