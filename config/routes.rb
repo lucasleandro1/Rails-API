@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     resource :phones, only: [:show]
     resource :phones, only: [:show], patch: 'relationships/phones'
 
-    resource :address, only: [:show]
-    resource :address, only: [:show], patch: 'relationships/address'
+    resource :address, only: [:show, :update, :create, :destroy]
+    resource :address, only: [:show, :update, :create, :destroy], patch: 'relationships/address'
   end
 
 
