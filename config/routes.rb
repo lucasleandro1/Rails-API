@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
     resource :phones, only: [:show]
     resource :phones, only: [:show], patch: 'relationships/phones'
+
+    resource :address, only: [:show]
+    resource :address, only: [:show], patch: 'relationships/address'
   end
 
 
