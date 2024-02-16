@@ -1,8 +1,11 @@
 class KindsController < ApplicationController
 
-include ActionController::HttpAuthentication::Basic::ControllerMethods
-http_basic_authenticate_with name:"lucas", password:"senha"
+# include ActionController::HttpAuthentication::Basic::ControllerMethods
+# http_basic_authenticate_with name:"lucas", password:"senha"
+  token = "lucas12345"
+  include ActionController::HttpAuthentication::Token::ControllerMethods
 
+  before_action :authenticate
   before_action :set_kind, only: %i[ show update destroy ]
 
   # GET /kinds
@@ -55,4 +58,13 @@ http_basic_authenticate_with name:"lucas", password:"senha"
     def kind_params
       params.require(:kind).permit(:description)
     end
+
+    def authenticate
+      authenticate_or_request_with_http_token do |token, options|
+      ActiveSupport::SecurityUtils.secure_compare(
+        ::Digest::SHA256.hexdigest(token),
+        ::Digest::SHA256.hexdigest(token)
+      )
+      end
+    end 
 end
