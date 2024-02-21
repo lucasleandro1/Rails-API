@@ -71,6 +71,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    base64 (0.2.0)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -96,6 +97,8 @@ GEM
       rdoc
       reline (>= 0.3.8)
     jsonapi-renderer (0.2.2)
+    jwt (2.8.0)
+      base64
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -195,6 +198,7 @@ DEPENDENCIES
   debug
   faker
   foreman
+  jwt
   pry-rails
   puma (~> 5.0)
   rack-cors

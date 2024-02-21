@@ -2,7 +2,7 @@ class KindsController < ApplicationController
 
 # include ActionController::HttpAuthentication::Basic::ControllerMethods
 # http_basic_authenticate_with name:"lucas", password:"senha"
-  token = "lucas12345"
+  # token = "lucas12345"
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
   before_action :authenticate
@@ -61,10 +61,12 @@ class KindsController < ApplicationController
 
     def authenticate
       authenticate_or_request_with_http_token do |token, options|
-      ActiveSupport::SecurityUtils.secure_compare(
-        ::Digest::SHA256.hexdigest(token),
-        ::Digest::SHA256.hexdigest(token)
-      )
+        hmac_secret = "secretkey"
+        JWT.decode token, hmac_secret, true, {:algorithm => "HS256"}
+      # ActiveSupport::SecurityUtils.secure_compare(
+      #   ::Digest::SHA256.hexdigest(token),
+      #   ::Digest::SHA256.hexdigest(token)
+      # )
       end
     end 
 end
