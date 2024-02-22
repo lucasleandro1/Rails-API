@@ -70,3 +70,4 @@ namespace :dev do
     spinner.success("#{msg_finish}") 
   end
 end
+

@@ -213,6 +213,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bootsnap
   debug
+  devise
   devise_token_auth
   faker
   foreman
