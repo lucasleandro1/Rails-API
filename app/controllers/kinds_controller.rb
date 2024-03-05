@@ -15,6 +15,7 @@ http_basic_authenticate_with name:"lucas", password:"senha"
     render json: @kinds
   end
 
+  
   # GET /kinds/1
   def show
     render json: @kind
