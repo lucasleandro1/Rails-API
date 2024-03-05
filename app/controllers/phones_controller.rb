@@ -1,5 +1,5 @@
-module V2
-  class PhonesController < ApplicationController
+
+class PhonesController < ApplicationController
       before_action :set_phones
       def show
           render json: @phones
@@ -10,5 +10,4 @@ module V2
       def set_phones
         @phones = Contact.find(params[:contact_id]).phones
       end
-    end
 end

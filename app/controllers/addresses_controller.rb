@@ -1,5 +1,5 @@
-module V2
-    class AddressesController < ApplicationController
+
+class AddressesController < ApplicationController
         before_action :set_contact
 
         def create
@@ -36,5 +36,4 @@ module V2
         def address_params
             ActiveModelSerializers::Deserialization.jsonapi_parse(params)
         end
-    end
 end
