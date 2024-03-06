@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :auths, only: [:create]
+  resources :auths
   resources :kinds
   
   resources :contacts do

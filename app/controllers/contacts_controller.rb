@@ -9,9 +9,10 @@ class ContactsController < ApplicationController
       #   @contacts = Contact.last(5)
       # end
       @contacts = Contact.all
-      render json: @contacts#, methods: :birthdate_br#, methods: [:hello, :i18n]# methods: :author #metodo author nos models
-      #render json: @contacts.map {|contact| contact.attributes.merge({author: "Lucas"})}
-      #only: [:name, :email] except: [:name, :email] 
+      #, methods: [:hello, :i18n]# methods: :author #metodo author nos models
+      render json: @contacts#, methods: [:hello, :i18n]# methods: :author #metodo author nos models
+      # render json: @contacts.map {|contact| contact.attributes.merge({author: "Lucas"})}
+      # only: [:name, :email] except: [:name, :email] 
     end
 
     # GET /contacts/1

@@ -1,5 +1,11 @@
 class AuthsController < ApplicationController
 
+    def index
+        @auths = Auth.all
+        render json: @auths
+    end
+
+
     def create
         hmac_secret = "secretkey"
         payload = {name: params[:name]}
