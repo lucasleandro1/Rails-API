@@ -6,7 +6,8 @@ ruby "3.2.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
 gem "rails-i18n", '~> 7.0.8'
-gem 'pry-rails'
+gem 'pry'
+gem 'pry-remote'
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 

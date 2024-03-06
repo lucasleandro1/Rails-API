@@ -1,4 +1,3 @@
-
 class PhonesController < ApplicationController
       before_action :set_phones
       def show
